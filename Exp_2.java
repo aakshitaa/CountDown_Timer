@@ -8,13 +8,6 @@ import java.applet.*;
 
 
 
-/**
-    * An applet that counts down from a specified time. When it reaches 00:00,
-    * it optionally plays a sound and optionally moves the browser to a new page.
-    * Place the mouse over the applet to pause the count; move it off to resume.
-    * This class demonstrates most applet methods and features.
-    **/
-
 public class Countdown extends JApplet implements ActionListener, MouseListener
 {
 long remaining; // How many milliseconds remain in the countdown.
