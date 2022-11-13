@@ -119,40 +119,7 @@ void pause() {
 
 // Update the displayed time. This method is called from actionPerformed()
 // which is itself invoked by the timer.
-void updateDisplay() {
-    long now = System.currentTimeMillis(); // current time in ms
-    long elapsed = now - lastUpdate; // ms elapsed since last update
-    remaining -= elapsed; // adjust remaining time
-    lastUpdate = now; // remember this update time
 
-    // Convert remaining milliseconds to mm:ss format and display
-    if (remaining < 0) remaining = 0;
-    int minutes = (int)(remaining/60000);
-    int seconds = (int)((remaining)/1000);
-    label.setText(format.format(minutes) + ":" + format.format(seconds));
-
-    // If we've completed the countdown beep and display new page
-    if (remaining == 0) {
-        // Stop updating now.
-        timer.stop();
-        // If we have an alarm sound clip, play it now.
-        if (sound != null) sound.play();
-        // If there is a newpage URL specified, make the browser
-        // load that page now.
-        String newpage = getParameter("newpage");
-        if (newpage != null) {
-            try {
-                URL url = new URL(getDocumentBase(), newpage);
-                getAppletContext().showDocument(url);
-            }
-            catch(MalformedURLException ex) {      showStatus(ex.toString()); }
-        }
-    }
-}
-
-// This method implements the ActionListener interface.
-// It is invoked once a second by the Timer object
-// and updates the JLabel to display minutes and seconds remaining.
 public void actionPerformed(ActionEvent e) { updateDisplay(); }
 
 // The methods below implement the MouseListener interface. We use
